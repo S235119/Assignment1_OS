@@ -13,7 +13,12 @@ read_char() {
 /* Writes c to stdout.  If no errors occur, it returns 0, otherwise EOF */
 int
 write_char(char c) {
-  return EOF;
+    ssize_t result = write(STDOUT_FILENO, &c ,1);
+    if(result == 1){
+        return 0;
+    }else {
+        return EOF;
+    }
 }
 
 /* Writes a null-terminated string to stdout.  If no errors occur, it returns 0, otherwise EOF */
