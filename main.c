@@ -42,5 +42,32 @@ main()
    *    as a comma delimited series of integers
    *-----------------------------------------------------------------*/
 
-  return 0;
+    int count = 0;
+    int collection[100] = {0};
+    collection* = 0;
+    char character;
+
+    do{
+        character = read_char();
+
+        if(character == 'a'){
+            collection* = count;
+            collection +1;
+            count++;
+        }
+        if(character == 'b'){
+            count++;
+        }
+        if(character == 'c'){
+            collection -1;
+            collection* = 0;
+            count++;
+        }
+    }
+    while (count == 'a' || count == 'b' || count == 'c');
+
+    write_string("count = ");
+    write_int(count);
+    write_char('\n');
+    return 0;
 }
