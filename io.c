@@ -47,6 +47,13 @@ write_int(int n) {
     char buffer[12];
     int i = 0;
 
+    if (n == 0) {
+        if (write_char('0') == EOF) {
+            return EOF;
+        }
+        return 0;
+    }
+
     while (n > 0) {
         buffer[i++] = (n % 10) + '0';
         n /= 10;
