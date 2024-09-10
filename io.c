@@ -44,5 +44,19 @@ write_string(char* s) {
  */
 int
 write_int(int n) {
-  return EOF;
+    char buffer[12];
+    int i = 0;
+
+    while (n > 0) {
+        buffer[i++] = (n % 10) + '0';
+        n /= 10;
+    }
+
+    while (i > 0) {
+        if (write_char(buffer[--i]) == EOF) {
+            return EOF;
+        }
+    }
+
+    return 0;
 }
