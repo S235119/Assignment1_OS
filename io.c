@@ -6,8 +6,14 @@
 
 /* Reads next char from stdin. If no more characters, it returns EOF */
 int
-read_char() {
-  return EOF;
+read_char () {
+    char c;
+    ssize_t input = read(STDIN_FILENO, &c, 1);
+    if (input == 0 || input == -1) {
+        return EOF;
+    } else {
+        return c;
+    }
 }
 
 /* Writes c to stdout.  If no errors occur, it returns 0, otherwise EOF */
