@@ -60,11 +60,19 @@ main()
         }
         if(character == 'c'){
             number--;
-            collection[number] = 0;
+            collection[number] = '\0';
             count++;
         }
     }
     while (character == 'a' || character == 'b' || character == 'c');
+
+    int spot = 0;
+    while(collection[spot] != 3) {
+        write_int(collection[spot]);
+        write_string(",");
+        spot++;
+    }
+    write_string(";");
 
     write_string("count = ");
     write_int(count);
