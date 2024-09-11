@@ -43,16 +43,16 @@ main()
    *-----------------------------------------------------------------*/
 
     int count = 0;
-    int collection[100] = {0};
-    collection* = 0;
+    int collection[100];
+    collection1*;
+    collection1 = collection;
     char character;
 
     do{
         character = read_char();
 
         if(character == 'a'){
-            collection* = count;
-            collection +1;
+            collection1
             count++;
         }
         if(character == 'b'){
