@@ -8,3 +8,22 @@ out="0,3,5;"
 [[ $(./cmd_int <<< "$in") == "$out"* ]] && echo "PASSED" || echo "FAILED"
 
 
+#!/bin/bash
+
+# Simple test of the command interpreter
+
+in="aacbaar"
+out="0,3,4;"
+
+[[ $(./cmd_int <<< "$in") == "$out"* ]] && echo "PASSED" || echo "FAILED"
+
+
+
+#!/bin/bash
+
+# Simple test of the command interpreter
+
+in="k"
+out=";"
+
+[[ $(./cmd_int <<< "$in") == "$out"* ]] && echo "PASSED" || echo "FAILED"

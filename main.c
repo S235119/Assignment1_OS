@@ -60,18 +60,20 @@ main()
         }
         if(character == 'c'){
             number--;
-            collection[number] = '\0';
+            collection[number] = 0;
             count++;
         }
     }
     while (character == 'a' || character == 'b' || character == 'c');
 
     int spot = 0;
-    while(collection[spot] != 0 || spot == 0) {
-        write_int(collection[spot]);
-        spot++;
-        if(collection[spot] != 0){
-            write_char(',');
+    for (int y = 0; y < number; y++) {
+        while (collection[spot] != 0 || spot == 0) {
+            write_int(collection[spot]);
+            spot++;
+            if (collection[spot] != 0) {
+                write_char(',');
+            }
         }
     }
     write_string(";");
