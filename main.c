@@ -59,7 +59,9 @@ main()
             count++;
         }
         if(character == 'c'){
-            number--;
+            if (number !=0) {
+                number--;
+            }
             collection[number] = 0;
             count++;
         }
