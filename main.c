@@ -81,8 +81,12 @@ main()
     write_string(";");
     write_char('\n');
 
+    /*
     write_string("count = ");
     write_int(count);
     write_char('\n');
+     */
+
     return 0;
+
 }

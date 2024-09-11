@@ -37,3 +37,13 @@ in="a"
 out="0;"
 
 [[ $(./cmd_int <<< "$in") == "$out"* ]] && echo "PASSED" || echo "FAILED"
+
+
+#!/bin/bash
+
+# Simple test of the command interpreter
+
+in="accaach"
+out="3;"
+
+[[ $(./cmd_int <<< "$in") == "$out"* ]] && echo "PASSED" || echo "FAILED"
