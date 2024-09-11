@@ -67,12 +67,15 @@ main()
     while (character == 'a' || character == 'b' || character == 'c');
 
     int spot = 0;
-    while(collection[spot] != 3) {
+    while(collection[spot] != 0 || spot == 0) {
         write_int(collection[spot]);
-        write_string(",");
         spot++;
+        if(collection[spot] != 0){
+            write_char(',');
+        }
     }
     write_string(";");
+    write_char('\n');
 
     write_string("count = ");
     write_int(count);
