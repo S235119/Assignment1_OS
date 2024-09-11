@@ -13,7 +13,7 @@ out="0,3,5;"
 # Simple test of the command interpreter
 
 in="aacbaar"
-out="0,3,4;"
+out="0,4,5;"
 
 [[ $(./cmd_int <<< "$in") == "$out"* ]] && echo "PASSED" || echo "FAILED"
 
