@@ -43,28 +43,28 @@ main()
    *-----------------------------------------------------------------*/
 
     int count = 0;
-    int collection[100];
-    collection1*;
-    collection1 = collection;
+    int collection[100] = {0};
+    int number = 0;
     char character;
 
     do{
         character = read_char();
 
         if(character == 'a'){
-            collection1
+            collection[number] = count;
+            number++;
             count++;
         }
         if(character == 'b'){
             count++;
         }
         if(character == 'c'){
-            collection -1;
-            collection* = 0;
+            number--;
+            collection[number] = 0;
             count++;
         }
     }
-    while (count == 'a' || count == 'b' || count == 'c');
+    while (character == 'a' || character == 'b' || character == 'c');
 
     write_string("count = ");
     write_int(count);
