@@ -43,7 +43,7 @@ main()
    *    as a comma delimited series of integers
    *-----------------------------------------------------------------*/
     typedef struct Collection {
-        char element;
+        int element;
         struct Collection* next;
     } Collection;
 
@@ -101,17 +101,14 @@ main()
     }
     while (character == 'a' || character == 'b' || character == 'c');
 
-    int spot = 0;
-    for (int y = 0; y < number; y++) {
-        while (collection[spot] != 0 || spot == 0) {
-            write_int(collection[spot]);
-            spot++;
-            if (collection[spot] != 0) {
-                write_char(',');
-            }
+    while (newElement -> next != NULL) {
+        write_int(newElement -> element);
+        newElement = newElement -> next;
+        if (newElement -> next != NULL) {
+            write_char(',');
         }
     }
-    write_string(";");
+    write_string(':');
     write_char('\n');
 
     /*
