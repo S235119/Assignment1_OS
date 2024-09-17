@@ -16,14 +16,14 @@
  * Then it has a place for you to implementation the command
  * interpreter as  specified in the handout.
  */
+typedef struct Collection {
+    int element;
+    struct Collection* next;
+} Collection;
+
 int
 main()
 {
-
-
-
-
-
     /*-----------------------------------------------------------------
 *TODO:  You need to implement the command line driver here as
 *       specified in the assignment handout.
@@ -42,28 +42,8 @@ main()
 *  Print your collection of elements as specified in the handout
 *    as a comma delimited series of integers
 *-----------------------------------------------------------------*/
-    typedef struct Collection {
-        int element;
-        struct Collection* next;
-    } Collection;
 
     char character;
-
-
-    /*  Collection * createCollection(int element) {
-          character = read_char();
-          Collection* newElement = (Collection*)malloc(sizeof(Collection));
-          newElement=character;
-          if (newElement == NULL) {
-              write_string("Error\n");
-              return NULL;
-          }
-          newElement->element = element;
-          newElement->next = NULL;
-          return newElement;
-      }*/
-
-
     Collection *head = NULL;
     Collection *tail = NULL;
 
@@ -71,9 +51,10 @@ main()
     int count = 0;
 
     do{
-        Collection *newElement = (Collection*)malloc(sizeof(Collection));
+
         character = read_char();
         if(character == 'a') {
+            Collection *newElement = (Collection*)malloc(sizeof(Collection));
             newElement->element = count;
             newElement->next = NULL;
 
@@ -86,6 +67,7 @@ main()
             }
             count++;
         }
+
         if(character == 'b'){
             count++;
         }
@@ -93,7 +75,7 @@ main()
         if(character == 'c'){
             if(head != NULL){
                 if(head == tail){
-                    free(head);
+                   // free(head);
                     head = NULL;
                     tail = NULL;
                 } else{
@@ -101,7 +83,7 @@ main()
                     while (current->next != tail) {
                         current = current->next;
                     }
-                    free(tail);
+                   // free(tail);
                     tail = current;
                     tail ->next = NULL;
                 }
@@ -111,13 +93,20 @@ main()
     }
     while (character == 'a' || character == 'b' || character == 'c');
 
+    Collection* point;
     while (head != NULL) {
         write_int(head -> element);
         if (head -> next != NULL) {
             write_char(',');
         }
-        head = head -> next;
+        point = head -> next;       //point holds the address of the next element before head is freed
+        free(head);        //freeing memory allocated for each element to avoid memory leaks
+
+        /*head is assigned the address of the next element to ensure that head always points to
+        a valid element and no to a freed memory location*/
+        head = point;
     }
+
     write_char(';');
     write_char('\n');
 
