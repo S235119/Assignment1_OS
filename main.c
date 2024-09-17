@@ -81,10 +81,6 @@ main()
     Collection *newCollection = (Collection*)malloc(sizeof(Collection));
     Collection *start= newCollection;
 
-
-
-
-
      do {
 
         character = read_char();
