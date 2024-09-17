@@ -69,10 +69,11 @@ main()
 
     Collection *newElement = (Collection*)malloc(sizeof(Collection));
 
+    /*
     int count = 0;
     int collection[100] = {0};
     int number = 0;
-
+*/
 
     do{
         character = read_char();
@@ -108,7 +109,7 @@ main()
             write_char(',');
         }
     }
-    write_string(':');
+    write_char(';');
     write_char('\n');
 
     /*
