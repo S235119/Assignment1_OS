@@ -2,6 +2,7 @@
 /* You are not allowed to use <stdio.h> */
 #include "io.h"
 #include <unistd.h>
+#include <stdlib.h>
 
 
 
@@ -41,28 +42,56 @@ main()
    *  Print your collection of elements as specified in the handout
    *    as a comma delimited series of integers
    *-----------------------------------------------------------------*/
+    typedef struct Collection {
+        char element;
+        struct Collection* next;
+    } Collection;
+
+    char character;
+
+
+  /*  Collection * createCollection(int element) {
+        character = read_char();
+        Collection* newElement = (Collection*)malloc(sizeof(Collection));
+        newElement=character;
+        if (newElement == NULL) {
+            write_string("Error\n");
+            return NULL;
+        }
+        newElement->element = element;
+        newElement->next = NULL;
+        return newElement;
+    }*/
+
+
+
+
+
+    Collection *newElement = (Collection*)malloc(sizeof(Collection));
 
     int count = 0;
     int collection[100] = {0};
     int number = 0;
-    char character;
+
 
     do{
         character = read_char();
-
         if(character == 'a'){
-            collection[number] = count;
-            number++;
-            count++;
+            newElement->element = character;
+            newElement->next = NULL;
         }
         if(character == 'b'){
             count++;
         }
+
         if(character == 'c'){
             if (number !=0) {
                 number--;
             }
             collection[number] = 0;
+
+
+
             count++;
         }
     }
