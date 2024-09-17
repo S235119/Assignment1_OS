@@ -68,27 +68,40 @@ main()
 
 
     Collection *newElement = (Collection*)malloc(sizeof(Collection));
+    Collection *current;
+    Collection *prev = NULL;
 
+
+   int count = 0;
     /*
-    int count = 0;
     int collection[100] = {0};
     int number = 0;
 */
 
     do{
+
         character = read_char();
-        if(character == 'a'){
-            newElement->element = character;
+        if(character == 'a') {
+            if (newElement == NULL){
+            newElement->element = count;
             newElement->next = NULL;
+
+        } else {
+                while (newElement->next != NULL) {
+                    newElement = newElement->next;
+                    write_int(newElement->element);
+                } newElement -> element = count;
+                newElement -> next = NULL;
+            }
+
+        count++;
+
         }
         if(character == 'b'){
             count++;
         }
 
         if(character == 'c'){
-            Collection *current = newElement;
-            Collection *prev = NULL;
-
             if (current != NULL) {
                 while (current->next != NULL) {
                     current = current->next;
@@ -102,13 +115,17 @@ main()
     }
     while (character == 'a' || character == 'b' || character == 'c');
 
-    while (newElement -> next != NULL) {
-        write_int(newElement -> element);
-        newElement = newElement -> next;
-        if (newElement -> next != NULL) {
-            write_char(',');
+    if(current -> next != NULL){
+        while (current -> next != NULL) {
+            write_int(current -> element);
+            current = current -> next;
+            if (current -> next != NULL) {
+                write_char(',');
+            }
         }
+
     }
+    write_int(newElement -> element);
     write_char(';');
     write_char('\n');
 
