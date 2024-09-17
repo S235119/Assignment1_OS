@@ -90,8 +90,7 @@ main()
         }
         if(character == 'b'){
                 count++;
-            write_int(count);
-            }
+        }
 
             if(character == 'c'){
             Collection *findElement = newCollection;
