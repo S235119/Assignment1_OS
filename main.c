@@ -84,6 +84,7 @@ main()
 
 
 
+
      do {
 
         character = read_char();
@@ -93,26 +94,25 @@ main()
         }
         if(character == 'b'){
                 count++;
+            write_int(count);
             }
-/*
+
             if(character == 'c'){
-                if (current != NULL) {
-                    while (current->next != NULL) {
-                        current = current->next;
+            Collection *findElement = newCollection;
+                if (findElement != NULL) {
+                    while (findElement->next != NULL) {
+                        findElement = findElement->next;
                     }
-                    prev->next = current;
-                    prev->next = NULL;
-                    newElement= prev;
+                    findElement->next = NULL;
                 }
                count++;
             }
-        }*/
-    }while (character == 'a' || character == 'b' || character == 'c');
+     } while (character == 'a' || character == 'b' || character == 'c');
 
     if (start !=NULL) {
         while (start->next != NULL){
             write_int(start->element);
-        start = start->next;
+            start=start->next;
             if (start->next != NULL) {
                 write_char(',');
             }
