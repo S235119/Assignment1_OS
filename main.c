@@ -16,6 +16,36 @@
  * Then it has a place for you to implementation the command 
  * interpreter as  specified in the handout.
  */
+typedef struct Collection {
+    int element;
+    struct Collection* next;
+} Collection;
+
+Collection * createCollection(int element) {
+    Collection* newElement = (Collection*)malloc(sizeof(Collection));
+    if (newElement == NULL) {
+        write_string("Error\n");
+        return NULL;
+    }
+    newElement->element = element;
+    newElement->next = NULL;
+    return newElement;
+}
+
+void edElement(Collection** head, int element) {
+    Collection *newElement = createCollection(element);
+    Collection *last = *head;
+
+    if (*head == NULL) {
+        *head = newElement;
+        return;
+    }
+    while (last->next != NULL) {
+        last = last->next;
+    }
+    last->next = newElement;
+}
+
 int
 main()
 {
@@ -42,99 +72,62 @@ main()
    *  Print your collection of elements as specified in the handout
    *    as a comma delimited series of integers
    *-----------------------------------------------------------------*/
-    typedef struct Collection {
-        int element;
-        struct Collection* next;
-    } Collection;
+
 
     char character;
+    int count = 0;
 
 
-  /*  Collection * createCollection(int element) {
-        character = read_char();
-        Collection* newElement = (Collection*)malloc(sizeof(Collection));
-        newElement=character;
-        if (newElement == NULL) {
-            write_string("Error\n");
-            return NULL;
-        }
-        newElement->element = element;
-        newElement->next = NULL;
-        return newElement;
-    }*/
+    Collection *newCollection = (Collection*)malloc(sizeof(Collection));
+    Collection *start= newCollection;
 
 
 
 
-
-    Collection *newElement = (Collection*)malloc(sizeof(Collection));
-    Collection *current;
-    Collection *prev = NULL;
-
-
-   int count = 0;
-    /*
-    int collection[100] = {0};
-    int number = 0;
-*/
-
-    do{
+     do {
 
         character = read_char();
-        if(character == 'a') {
-            if (newElement == NULL){
-            newElement->element = count;
-            newElement->next = NULL;
-
-        } else {
-                while (newElement->next != NULL) {
-                    newElement = newElement->next;
-                    write_int(newElement->element);
-                } newElement -> element = count;
-                newElement -> next = NULL;
-            }
-
-        count++;
-
-        }
-        if(character == 'b'){
+        if (character == 'a') {
+            edElement(&newCollection, count);
             count++;
         }
-
-        if(character == 'c'){
-            if (current != NULL) {
-                while (current->next != NULL) {
-                    current = current->next;
-                }
-                prev->next = current;
-                prev->next = NULL;
-                newElement= prev;
+        if(character == 'b'){
+                count++;
             }
-           count++;
-        }
-    }
-    while (character == 'a' || character == 'b' || character == 'c');
+/*
+            if(character == 'c'){
+                if (current != NULL) {
+                    while (current->next != NULL) {
+                        current = current->next;
+                    }
+                    prev->next = current;
+                    prev->next = NULL;
+                    newElement= prev;
+                }
+               count++;
+            }
+        }*/
+    }while (character == 'a' || character == 'b' || character == 'c');
 
-    if(current -> next != NULL){
-        while (current -> next != NULL) {
-            write_int(current -> element);
-            current = current -> next;
-            if (current -> next != NULL) {
+    if (start !=NULL) {
+        while (start->next != NULL){
+            write_int(start->element);
+        start = start->next;
+            if (start->next != NULL) {
                 write_char(',');
             }
-        }
-
     }
-    write_int(newElement -> element);
-    write_char(';');
+    }
+    else {
+        write_char(';');
+    }
+
+   // write_int(start->element);
     write_char('\n');
 
-    /*
-    write_string("count = ");
-    write_int(count);
-    write_char('\n');
-     */
 
     return 0;
 
 }
+
+
