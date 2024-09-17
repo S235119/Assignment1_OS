@@ -85,14 +85,18 @@ main()
         }
 
         if(character == 'c'){
-            if (number !=0) {
-                number--;
+            Collection *current = newElement;
+            Collection *prev = NULL;
+
+            if (current != NULL) {
+                while (current->next != NULL) {
+                    current = current->next;
+                }
+                prev->next = current;
+                prev->next = NULL;
+                newElement= prev;
             }
-            collection[number] = 0;
-
-
-
-            count++;
+           count++;
         }
     }
     while (character == 'a' || character == 'b' || character == 'c');
