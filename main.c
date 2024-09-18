@@ -2,9 +2,7 @@
 /* You are not allowed to use <stdio.h> */
 #include "io.h"
 #include <unistd.h>
-
-
-
+#include <stdlib.h>
 
 /**
  * @name  main
@@ -15,13 +13,27 @@
  * Then it has a place for you to implementation the command 
  * interpreter as  specified in the handout.
  */
-int
-main()
-{
 
+void collection_add(int** collection, int* size, int value) {
+    *collection = realloc(*collection, (*size + 1) * sizeof(int));
+    if (*collection == NULL) {
+        return;
+    }
+    (*collection)[*size] = value;
+    (*size)++;
+}
 
+void collection_remove(int** collection, int* size) {
+    if (*size > 0) {
+        *size -= 1;
+        *collection = realloc(*collection, *size * sizeof(int));
+        if (*size > 0 && *collection == NULL) {
+            return;
+        }
+    }
+}
 
-
+int main() {
 
        /*-----------------------------------------------------------------
    *TODO:  You need to implement the command line driver here as
@@ -42,50 +54,37 @@ main()
    *    as a comma delimited series of integers
    *-----------------------------------------------------------------*/
 
-    int count = 0;
-    int collection[100] = {0};
-    int number = 0;
-    char character;
+    int counter = 0;
+    int* collection = NULL;
+    int collection_size = 0;
+    int command;
 
-    do{
-        character = read_char();
-
-        if(character == 'a'){
-            collection[number] = count;
-            number++;
-            count++;
-        }
-        if(character == 'b'){
-            count++;
-        }
-        if(character == 'c'){
-            if (number !=0) {
-                number--;
-            }
-            collection[number] = 0;
-            count++;
+    while ((command = read_char()) != EOF) {
+        if (command == 'a') {
+            collection_add(&collection, &collection_size, counter);
+            counter++;
+        } else if (command == 'b') {
+            counter++;
+        } else if (command == 'c') {
+            collection_remove(&collection, &collection_size);
+            counter++;
+        } else {
+            break;
         }
     }
-    while (character == 'a' || character == 'b' || character == 'c');
 
-    int spot = 0;
-    for (int y = 0; y < number; y++) {
-        while (collection[spot] != 0 || spot == 0) {
-            write_int(collection[spot]);
-            spot++;
-            if (collection[spot] != 0) {
-                write_char(',');
-            }
+    // Printing the collection as a comma-separated list
+    for (int i = 0; i < collection_size; i++) {
+        if (i > 0) {
+            write_char(',');
         }
+        write_int(collection[i]);
     }
-    write_string(";");
+    write_char(';');
     write_char('\n');
 
-    /*
-    write_string("count = ");
-    write_int(count);
-    write_char('\n');
-     */
+    // Free allocated memory
+    free(collection);
 
     return 0;
 
